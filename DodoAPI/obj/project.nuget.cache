@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "myGG+fYtDXnCFQCBF8yKqmO1Mat/3arbexkvPrEfR6WNy9f+JoRixU56vh0PbtRE3FkpUxPn58G2AolsBstqsg==",
+  "dgSpecHash": "RgtvhWLm9v4UTbPdwoXuWb9WK8J/RD59ksdc9oJkAX95T4WMn882yJurWhVuCYe/dgbv200hjVJSks8cMd4e2Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\artem\\source\\repos\\DodoAPI\\DodoAPI\\DodoAPI.csproj",
+  "projectFilePath": "C:\\Users\\artem\\pizzasAPI\\DodoAPI\\DodoAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\artem\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\artem\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
