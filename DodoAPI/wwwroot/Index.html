@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Пиццы</title>
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+    <h1 align="center">Каталог пицц</h1>
+    <p id="counter" align="center"></p>
+    <table border="1" width="100%" cellpadding="5">
+        <tr>
+            <th>
+                <h3>Добавление пиццы</h3>
+                <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+                    <label>Название: <input type="text" id="add-Title"></label><br><br>
+                    <label>Цена: <input type="text" id="add-Price"></label><br><br>
+                    <label>Картинка: <input type="text" id="add-Picture"></label><br><br>
+                    <label>Описание: <input type="text" id="add-Description"></label><br><br>
+                    <label>Активно: <input type="checkbox" id="add-Active"></label><br><br>
+                    <label>Новинка: <input type="checkbox" id="add-New"></label><br><br>
+                    <label>Список ингредиентов: <input type="text" id="add-List_of_ingredients"></label><br><br>
+                    <label>Тесто: <select id="add-Dough"><option value="Традиционное">Традиционное</option><option value="Тонкое">Тонкое</option></select></label><br><br>
+                    <label>Дополнительно: <input type="text" id="add-Additionally"></label><br><br>
+                    <input type="submit" value="Добавить">
+                </form>
+            </th>
+            <th>
+                <table>
+                    <tr>
+                        <th>Название</th>
+                        <th>Цена</th>
+                        <th>Картинка</th>
+                        <th>Описание</th>
+                        <th>Активно</th>
+                        <th>Новинка</th>
+                        <th>Список ингредиентов</th>
+                        <th>Тесто</th>
+                        <th>Дополнительно</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tbody id="pizzas"></tbody>
+                </table>
+            </th>
+        </tr>
+        <tr>
+            <th colspan="2">
+                <div id="editForm">
+                    <h3>Изменение</h3>
+                    <form action="javascript:void(0);" onsubmit="updateItem()">
+                        <input type="hidden" id="edit-id">
+                        <label>Название: <input type="text" id="edit-Title"></label><br><br>
+                        <label>Цена: <input type="text" id="edit-Price"></label><br><br>
+                        <label>Картинка: <input type="text" id="edit-Picture"></label><br><br>
+                        <label>Описание: <input type="text" id="edit-Description"></label><br><br>
+                        <label>Активно: <input type="checkbox" id="edit-Active"></label><br><br>
+                        <label>Новинка: <input type="checkbox" id="edit-New"></label><br><br>
+                        <label>Список ингредиентов: <input type="text" id="edit-List_of_ingredients"></label><br><br>
+                        <label>Тесто: <select id="edit-Dough"><option value="Традиционное">Традиционное</option><option value="Тонкое">Тонкое</option></select></label><br><br>
+                        <label>Дополнительно: <input type="text" id="edit-Additionally"></label><br><br>
+                        <input type="submit" value="Сохранить">
+                        <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+                    </form>
+                </div>
+            </th>
+        </tr>
+    </table>
+
+    <script src="js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        getItems();
+    </script>
+</body>
+</html>
