@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace DodoAPI.Models
 {
@@ -11,6 +12,7 @@ namespace DodoAPI.Models
         }
 
         public DbSet<Pizza> Pizzas { get; set; }
+        public DbSet<Ingredient> Ingredients { get; set; }
     }
     public class Pizza
     {
@@ -21,8 +23,15 @@ namespace DodoAPI.Models
         public string Description { get; set; }
         public bool Active { get; set; }
         public bool New { get; set; }
-        public string List_of_ingredients { get; set; }
+        public ICollection<Ingredient> Ingredients { get; set; }
         public string Dough { get; set; }
         public string Additionally { get; set; }
+    }
+    public class Ingredient
+    {
+        public int id { get; set; }
+        public string Title { get; set; }
+        public int? PizzaId { get; set; }
+        public virtual Pizza Pizza { get; set; }
     }
 }

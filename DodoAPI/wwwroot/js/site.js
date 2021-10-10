@@ -1,5 +1,6 @@
 ﻿const uri = 'api/pizzas';
 let pizzas = [];
+var ingredients = [];
 
 function getItems() {
     fetch(uri)
@@ -8,6 +9,13 @@ function getItems() {
         .catch(error => console.error('Unable to get items.', error));
 }
 
+function addInput() {
+    let ingredient = document.getElementById('add-List_of_ingredients').value;
+    document.getElementById('add-List_of_ingredients').value = '';
+    ingredients.push(ingredient);
+    let out_arr = document.getElementById('out_arr');
+    out_arr.innerHTML = ingredients;
+}
 function addItem() {
     const addTitleTextbox = document.getElementById('add-Title');
     const addPriceTextbox = document.getElementById('add-Price');
@@ -15,7 +23,6 @@ function addItem() {
     const addDescriptionTextbox = document.getElementById('add-Description');
     const addActiveCheckedbox = document.getElementById('add-Active');
     const addNewCheckedbox = document.getElementById('add-New');
-    const addList_of_ingredientsTextbox = document.getElementById('add-List_of_ingredients');
     const addDoughTextbox = document.getElementById('add-Dough');
     if (document.getElementById('add-Additionally').value !== '') { document.getElementById('add-Additionally').value = ' '}
     const addAdditionallyTextbox = document.getElementById('add-Additionally');
@@ -26,7 +33,6 @@ function addItem() {
         Description: addDescriptionTextbox.value.trim(),
         Active: addActiveCheckedbox.checked,
         New: addNewCheckedbox.checked,
-        List_of_ingredients: addList_of_ingredientsTextbox.value.trim(),
         Dough: addDoughTextbox.value.trim(),
         Additionally: addAdditionallyTextbox.value.trim(),
     };
@@ -46,7 +52,6 @@ function addItem() {
             addPriceTextbox.value = '';
             addPictureTextbox.value = '';
             addDescriptionTextbox.value = '';
-            addList_of_ingredientsTextbox.value = '';
             addAdditionallyTextbox.value = '';
         })
         .catch(error => console.error('Unable to add item.', error));

@@ -12,7 +12,19 @@ namespace DodoAPI.Controllers
     public class PizzasController : ControllerBase
     {
         private readonly PizzaContext _context;
-
+        /*public ActionResult TeamDetails(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            Pizza pizza = _context.Pizzas.Include(t => t.Ingredients).FirstOrDefault(t => t.id == id);
+            if (pizza == null)
+            {
+                return NotFound();
+            }
+            return ;
+        }*/
         public PizzasController(PizzaContext context)
         {
             _context = context;
@@ -99,6 +111,7 @@ namespace DodoAPI.Controllers
 
         private bool PizzaExists(long id)
         {
+            _context.Pizzas.Include(t => t.Ingredients).FirstOrDefault(t => t.id == id);
             return _context.Pizzas.Any(e => e.id == id);
         }
     }
