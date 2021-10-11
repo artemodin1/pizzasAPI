@@ -23,6 +23,7 @@ function addItem() {
     const addDescriptionTextbox = document.getElementById('add-Description');
     const addActiveCheckedbox = document.getElementById('add-Active');
     const addNewCheckedbox = document.getElementById('add-New');
+    const Ingredients = ingredients;
     const addDoughTextbox = document.getElementById('add-Dough');
     const addAdditionallyTextbox = document.getElementById('add-Additionally');
     const item = {
@@ -32,7 +33,7 @@ function addItem() {
         Description: addDescriptionTextbox.value.trim(),
         Active: addActiveCheckedbox.checked,
         New: addNewCheckedbox.checked,
-        Ingredients: ingredients,
+        Ingredients: Ingredients,
         Dough: addDoughTextbox.value.trim(),
         Additionally: addAdditionallyTextbox.value.trim(),
     };

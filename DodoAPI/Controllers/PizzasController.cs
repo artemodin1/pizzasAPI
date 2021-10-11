@@ -4,8 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DodoAPI.Models;
-using System.Diagnostics;
-using Newtonsoft.Json;
 
 namespace DodoAPI.Controllers
 {
@@ -14,19 +12,7 @@ namespace DodoAPI.Controllers
     public class PizzasController : ControllerBase
     {
         private readonly PizzaContext _context;
-        /*public ActionResult TeamDetails(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            Pizza pizza = _context.Pizzas.Include(t => t.Ingredients).FirstOrDefault(t => t.id == id);
-            if (pizza == null)
-            {
-                return NotFound();
-            }
-            return ;
-        }*/
+
         public PizzasController(PizzaContext context)
         {
             _context = context;
@@ -97,9 +83,7 @@ namespace DodoAPI.Controllers
                 Description = pizza.Description,
                 Active = pizza.Active,
                 New = pizza.New,
-                //Ingredients = new List<Ingredient>(),
                 Ingredients = new List<Ingredient>(),
-                //Ingredients = _context.Ingredients,
                 Dough = pizza.Dough,
                 Additionally = pizza.Additionally,
             };
@@ -118,16 +102,16 @@ namespace DodoAPI.Controllers
 
         // DELETE: api/Pizzas/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePizza(long id)
+        public IActionResult DeletePizza(long id)
         {
-            var pizza = await _context.Pizzas.FindAsync(id);
-            if (pizza == null)
-            {
-                return NotFound();
-            }
+            Pizza pizza = _context.Pizzas.Where(c => c.id == id).FirstOrDefault();
+
+            _context.Entry(pizza)
+                .Collection(c => c.Ingredients)
+                .Load();
 
             _context.Pizzas.Remove(pizza);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return NoContent();
         }
