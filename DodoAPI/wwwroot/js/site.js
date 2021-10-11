@@ -24,7 +24,6 @@ function addItem() {
     const addActiveCheckedbox = document.getElementById('add-Active');
     const addNewCheckedbox = document.getElementById('add-New');
     const addDoughTextbox = document.getElementById('add-Dough');
-    if (document.getElementById('add-Additionally').value !== '') { document.getElementById('add-Additionally').value = ' '}
     const addAdditionallyTextbox = document.getElementById('add-Additionally');
     const item = {
         Title: addTitleTextbox.value.trim(),
@@ -33,6 +32,7 @@ function addItem() {
         Description: addDescriptionTextbox.value.trim(),
         Active: addActiveCheckedbox.checked,
         New: addNewCheckedbox.checked,
+        Ingredients: ingredients,
         Dough: addDoughTextbox.value.trim(),
         Additionally: addAdditionallyTextbox.value.trim(),
     };
@@ -51,6 +51,7 @@ function addItem() {
             addTitleTextbox.value = '';
             addPriceTextbox.value = '';
             addPictureTextbox.value = '';
+            ingredients = [];
             addDescriptionTextbox.value = '';
             addAdditionallyTextbox.value = '';
         })
@@ -176,9 +177,11 @@ function _displayItems(data) {
         let td5 = tr.insertCell(5);
         td5.appendChild(NewCheckbox);
 
+        let List_of_ingredients = [];
         let td6 = tr.insertCell(6);
-        let List_of_ingredients = document.createTextNode(item.list_of_ingredients);
-        td6.appendChild(List_of_ingredients);
+        item.ingredients.forEach(i => List_of_ingredients.push(i.title));
+        let Ingredients = document.createTextNode(List_of_ingredients);
+        td6.appendChild(Ingredients);
 
         let td7 = tr.insertCell(7);
         let Dough = document.createTextNode(item.dough);

@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DodoAPI.Models;
+using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace DodoAPI.Controllers
 {
@@ -33,8 +35,8 @@ namespace DodoAPI.Controllers
         // GET: api/Pizzas
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Pizza>>> GetPizzas()
-        {
-            return await _context.Pizzas.ToListAsync();
+        { 
+            return await _context.Pizzas.Include(p => p.Ingredients).ToListAsync();
         }
 
         // GET: api/Pizzas/5
@@ -85,12 +87,33 @@ namespace DodoAPI.Controllers
         // POST: api/Pizzas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Pizza>> PostPizza(Pizza pizza)
+        public async Task<ActionResult<Pizza>> PostPizza([FromBody]PizzaDto pizza)
         {
-            _context.Pizzas.Add(pizza);
+            var pizzaEntity = new Pizza()
+            {
+                Title = pizza.Title,
+                Price = pizza.Price,
+                Picture = pizza.Picture,
+                Description = pizza.Description,
+                Active = pizza.Active,
+                New = pizza.New,
+                //Ingredients = new List<Ingredient>(),
+                Ingredients = new List<Ingredient>(),
+                //Ingredients = _context.Ingredients,
+                Dough = pizza.Dough,
+                Additionally = pizza.Additionally,
+            };
+            foreach(var i in pizza.Ingredients)
+            {
+                var ingredient = new Ingredient() { Title = i };
+                pizzaEntity.Ingredients.Add(ingredient);
+            }
+            _context.Pizzas.Add(pizzaEntity);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPizza", new { id = pizza.id }, pizza);
+            //return CreatedAtAction("GetPizza", new { id = pizza.id }, pizza);
+
+            return new OkResult();
         }
 
         // DELETE: api/Pizzas/5
@@ -111,7 +134,6 @@ namespace DodoAPI.Controllers
 
         private bool PizzaExists(long id)
         {
-            _context.Pizzas.Include(t => t.Ingredients).FirstOrDefault(t => t.id == id);
             return _context.Pizzas.Any(e => e.id == id);
         }
     }

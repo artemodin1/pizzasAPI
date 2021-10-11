@@ -268,3 +268,6 @@ C:\Users\artem\pizzasAPI\DodoAPI\obj\Debug\net5.0\DodoAPI.dll
 C:\Users\artem\pizzasAPI\DodoAPI\obj\Debug\net5.0\ref\DodoAPI.dll
 C:\Users\artem\pizzasAPI\DodoAPI\obj\Debug\net5.0\DodoAPI.pdb
 C:\Users\artem\pizzasAPI\DodoAPI\obj\Debug\net5.0\DodoAPI.genruntimeconfig.cache
+C:\Users\artem\pizzasAPI\DodoAPI\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\artem\pizzasAPI\DodoAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\artem\pizzasAPI\DodoAPI\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

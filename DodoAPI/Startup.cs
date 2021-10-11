@@ -24,7 +24,8 @@ namespace DodoAPI
             services.AddControllers();
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<PizzaContext>(options => options.UseSqlServer(connection));
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             /*services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DodoAPI", Version = "v1" });
